@@ -4,21 +4,21 @@
     <h2>以下にお答えください</h2>
     <div class="first">
       <h3>現在生命保険に加入されていますか？</h3>
-      <label class="choice"><input type="radio" name="firstquestion" @click="showSecondQuestion = true">はい</label>
-      <label><input type="radio" name="firstquestion" @click="showSecondQuestion = true">いいえ</label>
+      <label class="choice"><input type="radio" name="firstquestion" @click="showSecondQuestion = true" v-model="firstQuestion" value="はい">はい</label>
+      <label><input type="radio" name="firstquestion" @click="showSecondQuestion = true" v-model="firstQuestion" value="いいえ">いいえ</label>
     </div>
     <transition name="fade">
       <div class="second" v-if="showSecondQuestion"> 
         <h3>現在入院中ですか。または、最近3ヶ月以内に医師の診察、検査の結果、入院手術を勧められたことはありますか？</h3>
-        <label class="choice"><input type="radio" name="secondquestion" @click="showThirdQuestion = true" >はい</label>
-        <label><input type="radio" name="secondquestion" @click="showThirdQuestion = true">いいえ</label>
+        <label class="choice"><input type="radio" name="secondquestion" @click="showThirdQuestion = true" v-model="secondQuestion" value="はい">はい</label>
+        <label><input type="radio" name="secondquestion" @click="showThirdQuestion = true" v-model="secondQuestion" value="いいえ">いいえ</label>
       </div>
     </transition>
     <transition name="fade">
       <div class="third" v-if="showThirdQuestion">
         <h3>過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことがありますか? </h3>
-        <label class="choice"><input type="radio" name="thirdquestion" >はい</label>
-        <label><input type="radio" name="thirdquestion">いいえ</label>
+        <label class="choice"><input type="radio" name="thirdquestion" v-model="thirdQuestion" value="はい">はい</label>
+        <label><input type="radio" name="thirdquestion" v-model="thirdQuestion" value="いいえ">いいえ</label>
       </div>
     </transition>
   </div>
@@ -33,9 +33,35 @@ export default {
   data: function () {
    return {
      showSecondQuestion: false,
-     showThirdQuestion: false
+     showThirdQuestion: false,
    }
   },
+  computed: {
+    firstQuestion: {
+      get() {
+        return this.$store.state.firstQuestion;
+      },
+      set(value) {
+        this.$store.commit("updateFirstQuestion", value);
+      }
+    },
+    secondQuestion: {
+      get() {
+        return this.$store.state.secondQuestion;
+      },
+      set(value) {
+        this.$store.commit("updateSecondQuestion", value);
+      }
+    },
+    thirdQuestion: {
+      get() {
+        return this.$store.state.thirdQuestion;
+      },
+      set(value) {
+        this.$store.commit("updateThirdQuestion", value);
+      }
+    },
+  }
 }     
 </script>
 

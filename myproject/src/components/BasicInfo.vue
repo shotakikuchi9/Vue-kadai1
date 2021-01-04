@@ -4,19 +4,25 @@
     <h2>お客様の情報を入力してください</h2>
     <div class="gender">
       <h3>-性別-</h3>
-        <label class="man"><input type="radio" name="gender">男性</label>
-        <label><input type="radio" name="gender">女性</label>
+        <label class="man"><input type="radio" name="gender" v-model="gender" value="男性">男性</label>
+        <label><input type="radio" name="gender" v-model="gender" value="女性">女性</label>
     </div>
     <div class="date">
       <h3>-生年月日-</h3>
       <div class="select">
-        <select name="year" id="year"></select>年
+        <select name="year" id="year" v-model="year">
+          <option v-for="year in years" :key="year">{{year}}</option>
+        </select>年
       </div>
       <div class="select">
-        <select name="month" id="month"></select>月
+        <select name="month" id="month" v-model="month">
+          <option v-for="month in months" :key="month">{{month}}</option>
+        </select>月
       </div>
       <div class="select">
-        <select name="day" id="day"></select>日
+        <select name="day" id="day" v-model="day">
+          <option v-for="day in days" :key="day">{{day}}</option>
+        </select>日
       </div>
     </div>
   </div>
@@ -28,15 +34,48 @@
 </template>
 <script>
 import 'bulma/css/bulma.css';
-import definition from '@/definition'
+import {years, months, days} from '@/definition'
 export default {
-  methods: {
-    createBirthday() {
-      definition.createBirthday();
+  data: function() {
+    return {
+      years,
+      months,
+      days
     }
   },
-  mounted() {
-    this.createBirthday();
+  computed: {
+    gender: {
+      get() {
+        return this.$store.state.gender;
+      },
+      set(value) {
+        this.$store.commit("updateGender", value);
+      }
+    },
+    year: {
+      get() {
+        return this.$store.state.year;
+      },
+      set(value) {
+        this.$store.commit("updateYear", value);
+      }
+    },
+    month: {
+      get() {
+        return this.$store.state.month;
+      },
+      set(value) {
+        this.$store.commit("updateMonth", value);
+      }
+    },
+    day: {
+      get() {
+        return this.$store.state.day;
+      },
+      set(value) {
+        this.$store.commit("updateDay", value);
+      }
+    }
   }
 }
 </script>

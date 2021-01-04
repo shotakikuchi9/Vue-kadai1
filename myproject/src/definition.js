@@ -1,33 +1,21 @@
-export default { createBirthday }
-function createBirthday () {
-   const year = document.getElementById('year');
-   const month = document.getElementById('month');
-   const day = document.getElementById('day');
-  function set_year () {
-    for (let i = 1950; i < 2020; i++){
-      const option = document.createElement('option');
-      option.value = i;
-      option.text = i;
-      year.appendChild(option);
+  export const years = [];
+  export const months = [];
+  export const days = [];
+  function setYear () {
+    for (let i = 1950; i < 2020; i++) {
+      years.push(i);
     }
   }
-  function set_month () {
-    for (let i = 1; i <= 12; i++){
-      const option = document.createElement('option');
-      option.value = i;
-      option.text = i;
-      month.appendChild(option);
+  function setMonth () {
+    for (let i = 1; i <= 12; i++) {
+      months.push(i);
     }
   }
-  function set_day(){
+  function setDay(){
     for (let i = 1; i <= 31; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.text = i;
-      day.appendChild(option);
+      days.push(i);
     }
   }
-  set_day();
-  set_month();
-  set_year();
-}
+  setDay();
+  setMonth();
+  setYear();

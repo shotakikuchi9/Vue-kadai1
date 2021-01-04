@@ -4,16 +4,26 @@
     <h2>ご相談内容をご記入ください</h2>
     <p>-ご相談内容-</p>
     <div>
-      <textarea class="textarea" rows="15"></textarea>
+      <textarea class="textarea" rows="15" v-model="text"></textarea>
     </div>
   </div>
   <router-link to="./Questions"><button class="button is-primary">前へ戻る</button></router-link>
-  <button class="button is-primary">次へ進む</button>
+  <router-link to="./Confirm"><button class="button is-primary">次へ進む</button></router-link>
 </div> 
 </template>
 <script>
 import 'bulma/css/bulma.css';
 export default {
+  computed: {
+    text: {
+      get() {
+        return this.$store.state.text;
+      },
+      set(value) {
+        this.$store.commit("updateText", value);
+      }
+    }
+  }
 }
 </script>
 <style scoped>
