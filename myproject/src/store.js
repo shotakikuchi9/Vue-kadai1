@@ -5,14 +5,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store ({
   state: {
-    gender: "",
-    text: "",
-    year: "",
-    month: "",
-    day: "",
-    firstQuestion: "",
-    secondQuestion: "",
-    thirdQuestion: "",
+    gender: '',
+    text: '',
+    year: '',
+    month: '',
+    day: '',
+    firstQuestion: '',
+    secondQuestion: '',
+    thirdQuestion: '',
+  },
+  getters: {
+    gender: state => state.gender,
+    year: state => state.year,
+    month: state => state.month,
+    day: state => state.day
   },
   mutations: {
     updateGender (state, newGender) {

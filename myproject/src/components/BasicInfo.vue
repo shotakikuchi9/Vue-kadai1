@@ -45,35 +45,35 @@ export default {
   },
   computed: {
     gender: {
-      get() {
-        return this.$store.state.gender;
-      },
       set(value) {
         this.$store.commit("updateGender", value);
+      },
+      get() {
+        return this.$store.getters.gender;
       }
     },
     year: {
-      get() {
-        return this.$store.state.year;
-      },
       set(value) {
         this.$store.commit("updateYear", value);
+      },
+       get() {
+        return this.$store.getters.year;
       }
     },
     month: {
-      get() {
-        return this.$store.state.month;
-      },
       set(value) {
         this.$store.commit("updateMonth", value);
+      },
+       get() {
+        return this.$store.getters.month;
       }
     },
     day: {
-      get() {
-        return this.$store.state.day;
-      },
       set(value) {
         this.$store.commit("updateDay", value);
+      },
+       get() {
+        return this.$store.getters.day;
       }
     }
   }
